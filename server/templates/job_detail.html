@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job Detail
+{% endblock %}
+
+{% block body %}
+<div id="main">
+    <table class="job_result">
+        <tr>
+            <td>Job ID</td> <td>{{job.job_id}}
+        </tr>
+        <tr>
+            <td>Function</td> <td><code>{{job.job.func}}</code></td>
+        </tr>
+        <tr>
+            <td>Context</td> <td><code>{{job.job.ctx}}</code></td>
+        </tr>
+        <tr>
+            <td>Arguments and results</td>
+            <td>
+                <table>
+                    <tr>
+                        <th>Arguments</th> <th>Result</th> <th>Resultant context</th>
+                    </tr>
+                    {% for a in arc %}
+                    <tr>
+                        <td align="right">
+                            ({{ a.0|join:"," }})
+                        </td>
+                        <td align="right">
+                            <code>
+                            {% if a.1 %}
+                            {{ a.1 }}
+                            {% else %}
+                            undefined
+                            {% endif %}
+                            </code>
+                        </td>
+                        <td align="right">
+                            {{ a.2 }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
+

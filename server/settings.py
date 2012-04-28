@@ -1,6 +1,7 @@
 # Django settings for server project.
 import os
 import mongoengine
+from django import template
 
 # we want to use MongoEngine for auth
 mongoengine.connect("jobs")
@@ -10,6 +11,36 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SESSION_ENGINE = 'mongoengine.django.sessions'
+
+# EMAIL settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'cloudjsteam@gmail.com'
+EMAIL_HOST_PASSWORD = 'cloudjsteam'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+VERIFICATION_MAIL_BODY_TEMPLATE = template.Template('''
+Hello {{username}},
+
+Welcome to cloud.js. In order to get your API key, click the following link, or
+copy and paste it in your location bar.
+
+{{verification_link|safe}}
+
+Thanks
+The cloud.js team
+''')
+
+POST_VERIFICATION_MAIL_BODY_TEMPLATE = template.Template('''
+Hi!
+You have successfully verified your email. Here's your cloud.js API key(blank lines for clarity only):
+
+{{api_key|safe}}
+
+Thanks
+The cloud.js team
+''')
+# End email settings
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -23,7 +54,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'NAME': 'sqlite3.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -81,6 +112,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"),
 )
 
 # List of finder classes that know how to find static files in
@@ -131,10 +163,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'server_app',
+    'gunicorn'
 )
 
 # A sample logging configuration. The only tangible logging
