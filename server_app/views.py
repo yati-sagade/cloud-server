@@ -8,12 +8,12 @@ from django.contrib.auth import login, logout
 from django.core.mail import EmailMessage
 from django.template import Context
 from models import Controller
+from django.conf import settings
 import redis
 import datetime
 import urllib
 import uuid
 import os
-import server.settings as settings
 
 try:
     import json
@@ -133,8 +133,11 @@ def job_detail(request, job_id):
         arg = job_doc.job["args"][i]
         resultDict = job_doc.result.get(str(i), None)
         if resultDict:
-            ctx = resultDict.get("ctx", None)
-            ret = resultDict.get("ret", None)
+            if not resultDict.get("error", None):
+                ctx = resultDict.get("ctx", None)
+                ret = resultDict.get("ret", None)
+            else:
+                ret, ctx = resultDict["error"], None
         else:
             ctx, ret = None, None
         arg_result_ctx.append((arg, ret, ctx))
@@ -145,7 +148,25 @@ def job_detail(request, job_id):
                                  })
 
 def get_controller():
-    return Controller.objects.get(addr="127.0.0.1", port="4000")
+    # Simple LRU
+    controllers = Controller.objects.filter(state=0).order_by('timestamp')
+    the_one = None
+    for c in controllers:
+        try:
+            fp = urllib.urlopen('http://' + c.get_name() + '/ping/')
+            print('pinging %s' % c.get_name())
+            resp = fp.read()
+            print('read: %s' % resp)
+            if resp.strip() == '"pong"':
+                c.save()
+                return c
+            c.state = 1
+            c.save()
+        except IOError:
+            c.state = 1
+            c.save()
+
+    return None
 
 @login_required(login_url="/")
 def submit_job(request):
@@ -156,6 +177,7 @@ def submit_job(request):
             func, args, ctx = cd['func'], json.loads(cd['args']), json.loads(cd['ctx'])
             job = {"func": func, "args": args, "ctx": ctx}
             c = get_controller()
+            print(str(c) + ' selected now.') 
             job_doc = Job.objects.create(job=job, 
                                          remaining=len(job["args"]),
                                          owner=request.user.username,
