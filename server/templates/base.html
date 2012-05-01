@@ -2,10 +2,31 @@
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="/static/style.css" type="text/css" />
+        <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+        {% block head %}
+        {% endblock %}
     </head>
     <body lang="en">
-        {% block body %}
-        {% endblock %}
+        <div id="wrap">
+            <header id="mainheader">
+                <hgroup>
+                    <a href="/" id="logolnk"><h1>Cloud |.| js</h1></a>
+                </hgroup>
+                <section id="panel">
+                    {% if user.is_authenticated %}
+                        {{user.first_name}} | <a href="logout" class="lnk">logout</a>
+                    {% endif %}
+                </section>
+            </header>
+            {% block body %}
+            {% endblock %}
+        </div>
+            {% block footer %}
+            {% endblock %}
+
+            {% block script %}
+            {% endblock %}
+       
+     
     </body>
 </html>

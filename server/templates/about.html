@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+    .slide{
+        position: relative;
+        width: 900px;
+        padding: 40px;
+        margin: 20px auto;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing:    border-box;
+        -ms-box-sizing:     border-box;
+        -o-box-sizing:      border-box;
+        box-sizing:         border-box;
+
+        font-family: 'PT Serif', georgia, serif;
+        font-size: 48px;
+        line-height: 1.5;
+    }
+
+    <link rel="stylesheet" type="text/css" href="/static/css/shCore.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/shThemeMidnight.css" />
+</style>
+{% endblock %}
+{% block body %}
+<div id="main">
+    <div id="impress" >
+        <div class="step slide">
+            write your function
+            <pre>
+                <code>
+                function(){
+                    ...
+                }
+                </code>
+            </pre>
+        </div>
+        <div class="step slide" data-y="1000" data-x="500" data-rotate="90" data-scale="100">
+            Then send it over to me
+        </div>
+        <div class="step slide" data-x="-3000" data-y="10000">
+            I'll happily churn through
+        </div>
+        <div class="step slide" data-x="-3000" data-y="10100" data-z="-5000" data-scale="16">
+            In Parallel
+        </div>
+
+        <div class="step slide" data-x="33000" data-y="5000">
+            A <span class="nglow">job</span> consists of three things
+        </div>
+
+        <div class="step slide" data-x="34000" data-y="6000" data-rotate="45">
+            [Un] <span class="nglow">The function</span>
+            <div style="font-size: large">
+                <pre>
+                    function raise(x, y){
+                        if(y === 0) return 1;
+                        var ret = x;
+                        while(--y){
+                            ret *= x;
+                        }
+                        return ret;
+                    }
+                </pre>
+            </div>
+        </div>
+
+        <div class="step slide" data-x="35000" data-y="7000" data-rotate="90">
+            [Dos] <span class="nglow">The arguments.</span> A list of lists 
+            <pre>
+    [ [1, 2], [2, 2], [2, 10]]
+            </pre>
+            Each of the sublists' contents are passed as <em>positional params</em> to the function.
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/static/impress.js/js/impress.js"></script>
+<script type="text/javascript" src="/static/js/shCore.js"></script>
+<script type="text/javascript" src="/static/js/shBrushJScript.js"></script>
+<script>
+    impress().init();
+    SyntaxHighlighter.all();
+</script>
+{% endblock %}

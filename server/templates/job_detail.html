@@ -4,24 +4,33 @@
 Job Detail
 {% endblock %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/css/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/shThemeMidnight.css" />
+{% endblock %}
+
 {% block body %}
 <div id="main">
-    <table class="job_result">
-        <tr>
-            <td>Job ID</td> <td>{{job.job_id}}
-        </tr>
-        <tr>
-            <td>Function</td> <td><code>{{job.job.func}}</code></td>
-        </tr>
-        <tr>
-            <td>Context</td> <td><code>{{job.job.ctx}}</code></td>
-        </tr>
-        <tr>
-            <td>Arguments and results</td>
-            <td>
-                <table>
+    <div>
+        <strong>Job ID</strong> <br />
+        <pre>
+    <span class="jid">{{job.job_id}}</span>
+        </pre>
+    </div>
+    <div>
+        <strong>Function</strong> <br />
+        <pre class="brush: js" id="funcbody">{{job.job.func}}</pre>
+    </div>
+    <div>
+        <strong>Passed-in context</strong>
+        <pre class="brush: js">
+            // format:JSON
+            {{job.job.ctx}}
+        </pre>
+    </div>
+    <table class="job_result" cellspacing="0">
                     <tr>
-                        <th>Arguments</th> <th>Result</th> <th>Resultant context</th>
+                        <th>Argument{{arc.0.0|pluralize}}</th> <th>Result</th> <th>Resultant context</th>
                     </tr>
                     {% for a in arc %}
                     <tr>
@@ -42,10 +51,12 @@ Job Detail
                         </td>
                     </tr>
                     {% endfor %}
-                </table>
-            </td>
-        </tr>
     </table>
 </div>
+<script type="text/javascript" src="/static/js/shCore.js"></script>
+<script type="text/javascript" src="/static/js/shBrushJScript.js"></script>
+<script>
+    SyntaxHighlighter.all();
+</script>
 {% endblock %}
 

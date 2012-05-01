@@ -1,0 +1,226 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #041E3C;
+}
+#mainheader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    color: #fff;
+    font-family: Helvetica, Verdana, sans-serif;
+    background-color:#129553;
+}
+#logolnk{
+    text-decoration: none;
+    color: #fff;
+}
+#mainheader h1{
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+#logolnk:hover{
+    color: #fff;
+    animation-name: neonglow;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    
+    -moz-animation-name: neonglow;
+    -moz-animation-duration: 0.5s;
+    -moz-animation-timing-function: ease-in-out;
+    
+    -webkit-animation-name: neonglow;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease-in-out;
+
+    text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F, 0 0 0.2em #87F;
+    color: #fff;
+}
+@-moz-keyframes neonglow{
+    0%{text-shadow:none;
+        color: #fff;
+    }
+    100%{text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+        0 0 0.2em #87F;
+        color: #fff;
+    }
+}
+@-webkit-keyframes neonglow{
+    0%{text-shadow:none;
+        color: #555;
+    }
+    100%{text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+        0 0 0.2em #87F;
+        color: #fff;
+    }
+}
+@-ms-keyframes neonglow{
+    0%{text-shadow:none;
+        color: #555;
+    }
+    100%{text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+        0 0 0.2em #87F;
+        color: #fff;
+    }
+}
+@-o-keyframes neonglow{
+    0%{text-shadow:none;
+        color: #555;
+    }
+    100%{text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+        0 0 0.2em #87F;
+        color: #fff;
+    }
+}
+
+@keyframes neonglow{
+    0%{text-shadow:none;
+        color: #555;
+    }
+    100%{text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+        0 0 0.2em #87F;
+        color: #fff;
+    }
+}
+#main{
+    margin: auto;
+    width: 800px;
+    color: #ccc;
+    margin-top: 100px;
+}
+
+#main h2{
+    color: #fff;
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+#ltd{
+    border-right: solid #555 1px;
+    padding-right: 10px;
+}
+
+#rtd{
+    padding-left: 10px;
+}
+#loginform input, #registerform input, #jobform textarea, #jobform input{
+    border: none;
+    border-radius: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#jobform textarea{
+    background-color: #B2BBC6;
+    padding:10px;
+    height: 100px;
+    width: 300px;
+    font-family: Inconsolata, Consolas, Monaco, Helvetica, Verdana, sans-serif;
+    margin: 10px;
+    position: relative;
+    font-size: small;
+}
+
+
+.job_result{
+    border: 1px solid #999;
+}
+.job_result td{
+    /*border: 1px solid #ccc;*/
+    padding: 2px;
+    margin: 0;
+}
+#jobform textarea:focus{
+    box-shadow: 5px 10px 10px #000;
+}
+
+.bn{
+    overflow:visible;
+    padding:5px 10px;
+    font-size:13px;
+    font-weight:bold;
+    line-height:18px;
+    color:#fff;
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+    background-color: #129553;
+    background-repeat:no-repeat;
+    border:1px solid #129553;
+    cursor:pointer;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow:0 1px 0 rgba(255,255,255,.5);
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.5);box-shadow:0 1px 0 rgba(255,255,255,.5);
+    height: 30px;
+    width: 100px;
+}
+.bn:hover{
+    cursor: pointer;
+    background-color: #217F76;
+}
+.bn:active{
+    color: #000;
+}
+
+#jobs{
+    float: left;
+    background-color: #777;
+    display: inline;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    margin: 10px;
+    overflow: hidden;
+    border: solid black 1px;
+    -moz-box-shadow: 0 0 5px 5px #888;
+    -webkit-box-shadow: 0 0 5px 5px#888;
+    box-shadow: 0 0 2px 2px #000;
+}
+
+#jobs h3{
+    background-color:#000;
+    text-align: center;
+    margin: 0;
+    color: #ccc;
+    font-family: Helvetica, Verdana, sans-serif;
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+}
+
+#jobs a{
+    text-decoration: none;
+    color: #000;
+    font-size: small;
+}
+#jobs td{
+    background-color: #ccc;
+}
+
+#jobs td:hover{
+    background-color: #888;
+}
+#panel{
+    float: right;
+    margin-right: 15px;
+}
+.lnk{
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+    color: #fff;
+
+}
+#func_editor{
+    position: absolute; 
+    height: 300px;
+    width: 300px;
+}
+#funcbody{
+    margin: 0;
+}

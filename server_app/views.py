@@ -144,7 +144,8 @@ def job_detail(request, job_id):
 
     return render_to_response("job_detail.html", 
                                  {"job": job_doc,
-                                  "arc": arg_result_ctx
+                                  "arc": arg_result_ctx,
+                                  "user": request.user,
                                  })
 
 def get_controller():

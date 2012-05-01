@@ -4,28 +4,49 @@
 Home
 {% endblock %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/css/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/shThemeMidnight.css" />
+{% endblock %}
+
+
 {% block body %}
 <div id="main">
-    <p>Login
-    <form action="" method="post" id="loginform">
-        {% csrf_token %}
-        <table>
-            {{ login_form.as_table }}
-            <tr><td></td>
-                <td align="right"><input type="submit" value="login" /></td></tr>
-        </table>
-    </form></p>
-    
-    <p>Register
-    <form action="/register/" method="post" id="registerform">
-        {% csrf_token %}
-        <table>
-            {{registration_form.as_table}}
-        <tr><td></td>
-                <td align="right"><input type="submit" value="register" /></td></tr>
+    <table id="forms">
+        <tr>
+            <td align="left" valign="top" id="ltd">
+                <p><h2>Login</h2>
+                <form action="" method="post" id="loginform">
+                    {% csrf_token %}
+                    <table>
+                        {{ login_form.as_table }}
+                        <tr><td></td>
+                            <td align="right"><input type="submit" value="login" class="bn"/></td></tr>
+                    </table>
+                </form></p>
+            </td>
+            <td align="left" valign="top" id="rtd">
+                <p><h2>Register</h2>
+                <form action="/register/" method="post" id="registerform">
+                    {% csrf_token %}
+                    <table>
+                        {{registration_form.as_table}}
+                    <tr><td></td>
+                            <td align="right"><input type="submit" value="register" class="bn"/></td></tr>
 
-        </table>
-    </form></p>
+                    </table>
+                </form></p>
+            </td>
+        </tr>
+    </table>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/js/shCore.js"></script>
+<script type="text/javascript" src="/static/js/shBrushJScript.js"></script>
+<script>
+    SyntaxHighlighter.all();
+</script>
 {% endblock %}
 

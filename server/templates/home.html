@@ -5,15 +5,8 @@
 {% endblock %}
 
 {% block body %}
-<div id="main">
-    <p>Hola, {{user.first_name}} !! Your email is {{user.email}}</p>
-    <p><a href="/logout/">Logout</a></p>
-    {% if request.session.error %}
-    {{ request.session.error }}
-    {% endif %}
-    <p>
-    <div id="jobs">
-        Your jobs
+ <div id="jobs">
+   <h3>Jobs</h3>
         <table id="jobs_table">
             {% for job in jobs %}
             <tr>
@@ -21,16 +14,34 @@
             </tr>
             {% endfor %}
         </table>
-    </div>
-    </p>
-    <form action="/submit_job/" method="post">
+</div>
+<div id="main">
+    {% if request.session.error %}
+    {{ request.session.error }}
+    {% endif %}
+    <p>
+    <form action="/submit_job/" method="post" id="jobform">
         {% csrf_token %}
         <table>
             {{ job_form.as_table }}
             <tr><td></td>
-                <td align="right"><input type="submit" value="submit job" /></td></tr>
+                <td align="right"><input type="submit" value="submit job" class="bn"/></td></tr>
         </table>
-    </form>
+    </form></p>
 </div>
+<!--
+<script src="/static/src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/src/ace.js" type="text/javascript" charset="utf-8"></script>
+-->
+<script type="text/javascript"> 
+    window.onload = function(){
+        /*var func_editor = ace.edit("func_editor");
+        func_editor.setTheme("ace/theme/twilight");
+        var JavaScriptMode = require("ace/mode/javascript").Mode;
+        editor.getSession().setMode(new JavaScriptMode());*/
+        
+    };
+</script>
 {% endblock %}
 
